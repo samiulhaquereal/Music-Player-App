@@ -26,6 +26,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: const _CustomAppBar(),
+        drawer: Drawer(),
         bottomNavigationBar: const _CustomNavBar(),
         body: SingleChildScrollView(
           child: Column(
@@ -136,6 +137,7 @@ class _DiscoverMusic extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           TextFormField(
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
               isDense: true,
               filled: true,
@@ -204,7 +206,12 @@ class _CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: const Icon(Icons.grid_view_rounded),
+      leading: GestureDetector(
+        onTap: (){
+          Scaffold.of(context).openDrawer();
+        },
+        child: const Icon(Icons.grid_view_rounded),
+      ),
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 20),
